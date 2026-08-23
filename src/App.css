@@ -222,36 +222,42 @@ h2 {
   color: #57534e;
 }
 
-.case-grid {
+.case-grid,
+.risk-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 
 .case-card,
+.risk-card,
 .report-card {
   border: 1px solid #d2c8b4;
   background: rgba(255, 255, 255, 0.72);
 }
 
-.case-card {
+.case-card,
+.risk-card {
   min-height: 300px;
   padding: 24px;
 }
 
-.case-card.strong {
+.case-card.strong,
+.risk-card.strong {
   background: #171717;
   color: white;
 }
 
-.case-card svg {
+.case-card svg,
+.risk-card svg {
   width: 34px;
   height: 34px;
   margin-bottom: 48px;
   color: #c22525;
 }
 
-.case-card.strong svg {
+.case-card.strong svg,
+.risk-card.strong svg {
   color: #fca5a5;
 }
 
@@ -263,13 +269,15 @@ h3 {
 }
 
 .case-card p,
+.risk-card p,
 .report-card p {
   margin-bottom: 0;
   color: #57534e;
   line-height: 1.5;
 }
 
-.case-card.strong p {
+.case-card.strong p,
+.risk-card.strong p {
   color: #e7e5e4;
 }
 
@@ -443,6 +451,7 @@ footer p {
   }
 
   .hero-grid,
+  .risk-grid,
   .case-grid,
   .timeline,
   .reliability-grid,

@@ -9,6 +9,7 @@ import {
   Plane,
   ShieldAlert,
   Siren,
+  WalletCards,
 } from 'lucide-react'
 import './App.css'
 
@@ -32,6 +33,21 @@ const timeline = [
   ['June 26, 2026', 'Delta rebooked to DL939 departing 12:15 PM and arriving JFK 8:58 PM.'],
   ['June 26, 2026', 'Turkish Airlines itinerary changed after the JFK plan became unusable.'],
   ['July-August 2026', 'Delta denied reimbursement and later called the matter final.'],
+]
+
+const risks = [
+  {
+    title: 'They can cancel within their control',
+    text: 'A cancellation can be caused by airline-controlled operational issues, not just weather or FAA events.',
+  },
+  {
+    title: 'They can rebook you too late',
+    text: 'A next-day flight may technically be a rebooking while being useless for the real purpose of the trip.',
+  },
+  {
+    title: 'They can refuse downstream costs',
+    text: 'Delta may say separate tickets, missed events, lodging, and other real-world impacts are not covered.',
+  },
 ]
 
 const reports = [
@@ -169,12 +185,12 @@ function App() {
             <p className="eyebrow">Independent consumer warning</p>
             <h1>Beware Booking Delta</h1>
             <p className="lede">
-              Delta can cancel a flight within its control, rebook you too late, and still say
-              same-day transportation is not guaranteed.
+              A consumer warning about Delta cancellations, next-day rebookings, vague hotel
+              support, and the fine print passengers discover only after their plans are ruined.
             </p>
             <div className="hero-actions">
-              <a className="primary-button" href="#case">
-                Read the DL915 case
+              <a className="primary-button" href="#risk">
+                See the risk
               </a>
               <a className="secondary-button" href="#checklist">
                 Protect your trip
@@ -213,41 +229,57 @@ function App() {
         </p>
       </section>
 
+      <section id="risk" className="section risk-section">
+        <div className="section-heading">
+          <p className="eyebrow">The warning</p>
+          <h2>Delta's rules can leave passengers carrying the real cost</h2>
+          <p>
+            Based on a documented case, public passenger reports, DOT data, and Delta's own
+            policies, this site tracks a simple risk: Delta may solve its own operational problem on
+            paper while leaving the passenger with a destroyed trip.
+          </p>
+        </div>
+
+        <div className="risk-grid">
+          {risks.map((risk, index) => (
+            <article className={index === 0 ? 'risk-card strong' : 'risk-card'} key={risk.title}>
+              {index === 0 && <Plane aria-hidden="true" />}
+              {index === 1 && <Clock3 aria-hidden="true" />}
+              {index === 2 && <WalletCards aria-hidden="true" />}
+              <h3>{risk.title}</h3>
+              <p>{risk.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section id="case" className="section case-section">
         <div className="section-heading">
-          <p className="eyebrow">Anchor case</p>
-          <h2>DL915: canceled overnight, rebooked too late</h2>
+          <p className="eyebrow">Documented example</p>
+          <h2>One real case: overnight flight, next-day replacement</h2>
           <p>
-            This case is documented with Delta correspondence, DOT complaint records, flight-change
-            evidence, and official policy links.
+            DL915 LAX {'->'} JFK was scheduled as an overnight transcontinental flight. Delta later
+            described the cancellation as “unavailable aircraft” and within Delta's operational
+            control, then identified a next-day replacement that arrived too late for an onward
+            international itinerary.
           </p>
         </div>
 
         <div className="case-grid">
           <article className="case-card strong">
             <Plane aria-hidden="true" />
-            <h3>The flight</h3>
-            <p>
-              DL915 LAX {'->'} JFK was an overnight transcontinental flight scheduled for June 25,
-              2026. Delta later described the cancellation reason as “unavailable aircraft” and
-              within Delta’s operational control.
-            </p>
+            <h3>Original</h3>
+            <p>DL915 LAX {'->'} JFK, overnight departure on June 25, 2026.</p>
           </article>
           <article className="case-card">
             <Clock3 aria-hidden="true" />
-            <h3>The replacement</h3>
-            <p>
-              Delta identified DL939 on June 26, departing LAX at 12:15 PM and arriving JFK at
-              8:58 PM. For an onward JFK {'->'} Istanbul itinerary, that was too late to be useful.
-            </p>
+            <h3>Rebooked</h3>
+            <p>DL939 on June 26, departing 12:15 PM and arriving JFK at 8:58 PM.</p>
           </article>
           <article className="case-card">
             <FileText aria-hidden="true" />
-            <h3>The final position</h3>
-            <p>
-              Delta stated same-day transportation is not guaranteed, separate onward travel is not
-              protected, and refunding the unused Delta ticket was the final remedy.
-            </p>
+            <h3>Delta's answer</h3>
+            <p>Same-day transportation not guaranteed; separate onward travel not protected.</p>
           </article>
         </div>
       </section>
