@@ -149,6 +149,29 @@ const reliability = [
   },
 ]
 
+const comparisons = [
+  {
+    title: 'Delta slipped in reliability rankings',
+    text: 'The Points Guy reported that early-2026 DOT data had Delta ranking an uncharacteristic sixth in cancellation-rate performance.',
+    href: 'https://thepointsguy.com/airline/best-airlines-2026-reliability/',
+  },
+  {
+    title: 'More cancellations than Southwest in July',
+    text: 'View from the Wing reported Delta canceled 4,626 flights in July 2026, nearly three times Southwest.',
+    href: 'https://viewfromthewing.com/new-data-shows-deltas-reliability-fell-apart-in-july-4626-flights-canceled-nearly-3x-southwest/',
+  },
+  {
+    title: '2025 cancellation-rate comparison',
+    text: 'NerdWallet’s 2025 reliability review listed Delta at 1.37% cancellations, higher than Southwest but lower than American.',
+    href: 'https://www.nerdwallet.com/travel/learn/most-reliable-airlines',
+  },
+  {
+    title: 'DOT consumer reports are the source of record',
+    text: 'DOT publishes monthly Air Travel Consumer Reports covering delays, cancellations, baggage, oversales, and complaints.',
+    href: 'https://www.transportation.gov/individuals/aviation-consumer-protection/air-travel-consumer-reports',
+  },
+]
+
 const checklist = [
   'Do not rely on a tight separate-ticket connection if timing matters.',
   'Screenshot every cancellation notice, rebooking option, chat, and receipt.',
@@ -318,6 +341,27 @@ function App() {
               <p>{item.note}</p>
             </article>
           ))}
+        </div>
+        <div className="comparison-block">
+          <div>
+            <p className="eyebrow">Delta vs other U.S. airlines</p>
+            <h3>Premium brand, worsening reliability signals</h3>
+            <p>
+              The point is not that Delta is always the worst airline. The point is that even a
+              premium airline can cancel, rebook too late, and then rely on fine print. Consumers
+              should compare cancellation data before trusting any airline with time-sensitive
+              plans.
+            </p>
+          </div>
+          <div className="comparison-list">
+            {comparisons.map((item) => (
+              <article className="comparison-card" key={item.href}>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+                <ExternalLink href={item.href}>Source</ExternalLink>
+              </article>
+            ))}
+          </div>
         </div>
         <div className="report-list">
           {reports.map((report) => (
