@@ -83,6 +83,36 @@ const reports = [
     href: 'https://www.reddit.com/r/delta/comments/1mfchvw/told_by_delta_to_book_hotel_due_to_cancelled/',
     kind: 'Public report',
   },
+  {
+    title: 'Facebook complaint community',
+    note: 'A public Facebook group exists specifically for Delta Air Lines customer complaints.',
+    href: 'https://www.facebook.com/groups/715221316650289/',
+    kind: 'Facebook',
+  },
+  {
+    title: 'X posts tracking Delta cancellations',
+    note: 'Public X posts circulated DOT-based claims about Delta cancellations in early 2026.',
+    href: 'https://x.com/AirlineHub1/status/2087648992125448559',
+    kind: 'X / Twitter',
+  },
+  {
+    title: 'Corporate rules vs human reality',
+    note: 'LinkedIn post describes a Delta disruption where the ticket was refunded and a voucher offered, while partner-airline disconnect impacts remained disputed.',
+    href: 'https://www.linkedin.com/posts/horn-jason_when-corporate-rules-ignore-human-reality-activity-7495534260502618112-oTzX',
+    kind: 'LinkedIn',
+  },
+  {
+    title: 'Eight hours onboard, then cancellation',
+    note: 'LinkedIn passenger report describes a long onboard delay, crew timeout, cancellation, and limited voucher support.',
+    href: 'https://www.linkedin.com/posts/yuvalgolan1_8-hours-onboard-no-food-no-updates-activity-7406701841633247232-cjui',
+    kind: 'LinkedIn',
+  },
+  {
+    title: 'Delta says vouchers can exist',
+    note: 'Delta CEO public post after the 2024 disruption referenced meal vouchers, hotel accommodations, and transportation where available.',
+    href: 'https://www.linkedin.com/posts/edbastian_like-many-companies-worldwide-delta-air-activity-7220856278506422272-Nc3m',
+    kind: 'Delta statement',
+  },
 ]
 
 const reliability = [
