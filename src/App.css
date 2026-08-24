@@ -22,6 +22,7 @@ nav {
 }
 
 .brand,
+.nav-links,
 .nav-link,
 .status-row,
 .source-row a,
@@ -39,6 +40,12 @@ nav {
   width: 24px;
   height: 24px;
   color: #c22525;
+}
+
+.nav-links {
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: flex-end;
 }
 
 .nav-link,
@@ -94,10 +101,18 @@ h1 {
 
 .lede {
   max-width: 760px;
-  margin-bottom: 36px;
+  margin-bottom: 16px;
   font-size: clamp(22px, 2.6vw, 34px);
   line-height: 1.14;
   color: #33302a;
+}
+
+.search-summary {
+  max-width: 690px;
+  margin: 0 0 36px;
+  color: #57534e;
+  font-size: 18px;
+  line-height: 1.45;
 }
 
 .hero-actions {
@@ -545,6 +560,10 @@ footer p {
   nav {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
   }
 
   .hero {

@@ -198,9 +198,14 @@ function App() {
             <Siren aria-hidden="true" />
             <span>DoNotFlyDelta.com</span>
           </div>
-          <a className="nav-link" href="#reports">
-            Passenger reports
-          </a>
+          <div className="nav-links">
+            <a className="nav-link" href="#risk">
+              Delta cancellation risk
+            </a>
+            <a className="nav-link" href="#reports">
+              Passenger reports
+            </a>
+          </div>
         </nav>
 
         <div className="hero-grid">
@@ -210,6 +215,10 @@ function App() {
             <p className="lede">
               A consumer warning about Delta cancellations, next-day rebookings, vague hotel
               support, and the fine print passengers discover only after their plans are ruined.
+            </p>
+            <p className="search-summary">
+              If you are searching for Delta canceled flight, Delta hotel voucher, Delta rebooking
+              policy, Delta complaints, or Delta same-day transportation, start here.
             </p>
             <div className="hero-actions">
               <a className="primary-button" href="#risk">
