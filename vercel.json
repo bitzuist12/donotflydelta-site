@@ -1,0 +1,22 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.donotflydelta.com" }],
+      "destination": "https://donotflydelta.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "deltacanceledmyflight.com" }],
+      "destination": "https://donotflydelta.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.deltacanceledmyflight.com" }],
+      "destination": "https://donotflydelta.com/$1",
+      "permanent": true
+    }
+  ]
+}
