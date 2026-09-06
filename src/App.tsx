@@ -5,12 +5,14 @@ import {
   BarChart3,
   Clock3,
   FileText,
+  MessageCircle,
   Newspaper,
   Plane,
   ShieldAlert,
   Siren,
   WalletCards,
 } from 'lucide-react'
+import { useState } from 'react'
 import './App.css'
 
 const officialSources = [
@@ -190,6 +192,25 @@ function ExternalLink({ href, children }: { href: string; children: React.ReactN
 }
 
 function App() {
+  const [submitted, setSubmitted] = useState(false)
+
+  function handleStorySubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = new FormData(event.currentTarget)
+    const subject = String(form.get('subject') || 'Passenger story submission')
+    const body = [
+      `Name or initials: ${form.get('name') || ''}`,
+      `Flight / route / date: ${form.get('trip') || ''}`,
+      '',
+      String(form.get('story') || ''),
+      '',
+      'I understand this submission will be reviewed before publication.',
+    ].join('\n')
+    const email = import.meta.env.VITE_SUBMISSION_EMAIL || 'ataonat00@gmail.com'
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(`[Story submission] ${subject}`)}&body=${encodeURIComponent(body)}`
+    setSubmitted(true)
+  }
+
   return (
     <main>
       <section className="hero">
@@ -204,6 +225,9 @@ function App() {
             </a>
             <a className="nav-link" href="#reports">
               Passenger reports
+            </a>
+            <a className="nav-link" href="#share">
+              Share your story
             </a>
           </div>
         </nav>
@@ -404,6 +428,41 @@ function App() {
         </div>
       </section>
 
+      <section id="share" className="section share-section">
+        <div className="section-heading compact">
+          <p className="eyebrow">Add your experience</p>
+          <h2>What happened to you?</h2>
+          <p>
+            Share a specific Delta cancellation, delay, rebooking, refund, or support experience.
+            Stories are reviewed before publication and should be factual, first-hand, and free of
+            private booking information.
+          </p>
+        </div>
+        <form className="story-form" onSubmit={handleStorySubmit}>
+          <label>
+            Headline
+            <input name="subject" required placeholder="Cancelled overnight flight" />
+          </label>
+          <label>
+            Name or initials
+            <input name="name" placeholder="Your choice" />
+          </label>
+          <label className="wide-field">
+            Flight, route, and date
+            <input name="trip" required placeholder="DL123, LAX to JFK, June 2026" />
+          </label>
+          <label className="wide-field">
+            What happened?
+            <textarea name="story" required rows={7} placeholder="Describe what Delta told you, what you were offered, and what happened next." />
+          </label>
+          <div className="story-form-footer">
+            <p><MessageCircle aria-hidden="true" /> No automatic publication. We review every submission.</p>
+            <button className="primary-button" type="submit">Prepare submission</button>
+          </div>
+          {submitted && <p className="form-success" role="status">Your email draft is prepared. Review it, attach evidence if appropriate, and send it.</p>}
+        </form>
+      </section>
+
       <section className="section source-section">
         <div className="section-heading compact">
           <p className="eyebrow">Official sources</p>
@@ -423,7 +482,7 @@ function App() {
           Independent consumer criticism site. Not affiliated with, sponsored by, or endorsed by
           Delta Air Lines.
         </p>
-        <p>More documented cases and a story-submission form are coming next.</p>
+        <p>Passenger stories are submitted by email and reviewed before publication.</p>
       </footer>
     </main>
   )
