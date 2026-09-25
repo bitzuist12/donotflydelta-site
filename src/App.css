@@ -492,23 +492,188 @@ h3 {
   height: 16px;
 }
 
+.incident-alert-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 14px 20px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-left: 5px solid #e11d48;
+}
+
+.incident-alert-banner .alert-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.incident-alert-banner svg {
+  width: 22px;
+  height: 22px;
+  color: #e11d48;
+  flex-shrink: 0;
+}
+
+.incident-alert-banner strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 850;
+  text-transform: uppercase;
+  color: #9f1239;
+  letter-spacing: 0.04em;
+}
+
+.incident-alert-banner span {
+  font-size: 14px;
+  color: #4c0519;
+  font-weight: 650;
+}
+
+.incident-alert-banner a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #e11d48;
+  color: white;
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.incident-alert-banner a:hover {
+  background: #be123c;
+}
+
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.spotlight-card {
+  padding: 20px;
+  border: 1px solid #171717;
+  background: #171717;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spotlight-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+  color: #fca5a5;
+  margin-bottom: 12px;
+}
+
+.spotlight-card h4 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 1.2;
+  color: white;
+}
+
+.spotlight-card p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #d6d3d1;
+  line-height: 1.45;
+}
+
+.spotlight-card a {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fca5a5;
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.spotlight-card a:hover {
+  color: white;
+}
+
 .report-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 24px;
   align-items: center;
   padding: 22px;
+  border-left: 5px solid #d2c8b4;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.report-card.legal {
+  border-left-color: #171717;
+  background: #fafaf9;
+}
+
+.report-card.safety {
+  border-left-color: #dc2626;
+  background: #fffdfd;
+}
+
+.report-card.operations {
+  border-left-color: #ea580c;
+  background: #fffbf7;
+}
+
+.report-card.passenger {
+  border-left-color: #475569;
+  background: #f8fafc;
 }
 
 .report-kind {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-bottom: 14px;
-  font-size: 12px;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  font-size: 11px;
   font-weight: 850;
   text-transform: uppercase;
-  color: #b91c1c;
+  letter-spacing: 0.04em;
+  border-radius: 3px;
+}
+
+.report-kind.legal {
+  background: #171717;
+  color: white;
+}
+
+.report-kind.safety {
+  background: #b91c1c;
+  color: white;
+}
+
+.report-kind.operations {
+  background: #c2410c;
+  color: white;
+}
+
+.report-kind.passenger {
+  background: #334155;
+  color: white;
 }
 
 .report-kind svg {
@@ -520,6 +685,7 @@ h3 {
 .source-row a {
   gap: 8px;
   color: #b91c1c;
+  font-weight: 750;
 }
 
 .report-card a svg,
@@ -599,6 +765,7 @@ footer p {
   .timeline,
   .reliability-grid,
   .comparison-block,
+  .spotlight-grid,
   .checklist {
     grid-template-columns: 1fr;
   }

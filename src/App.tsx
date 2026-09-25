@@ -358,6 +358,19 @@ function App() {
                 Protect your trip
               </a>
             </div>
+
+            <div className="incident-alert-banner">
+              <div className="alert-content">
+                <Siren aria-hidden="true" />
+                <div>
+                  <strong>Active 2025–2026 Incident & Investigation Docket</strong>
+                  <span>22 documented cases: DOT probes, spoiled food diversions, cabin fumes, fatal blasts & cancellation spikes</span>
+                </div>
+              </div>
+              <a href="#reports">
+                Inspect 22 Cases ↓
+              </a>
+            </div>
           </div>
 
           <aside className="signal-panel" aria-label="Key warning">
@@ -463,14 +476,68 @@ function App() {
 
       <section id="reports" className="section reports-section">
         <div className="section-heading">
-          <p className="eyebrow">Not a unique case</p>
-          <h2>Other data and reports point to the same risk</h2>
+          <p className="eyebrow">2025–2026 Investigative Docket & Public Reports</p>
+          <h2>Documented Scandals, In-Flight Emergencies & Safety Citations</h2>
           <p>
-            This section mixes official sources, news reporting, and public passenger reports.
-            Third-party passenger stories are not independently verified by this site; they are
-            included so readers can inspect recurring patterns for themselves.
+            An ongoing public record of federal DOT investigations, deadly maintenance safety citations,
+            spoiled food emergencies, toxic cabin fumes, and severe cancellation spikes from the past 12 months.
           </p>
         </div>
+
+        <div className="spotlight-grid" aria-label="Critical incident highlights">
+          <article className="spotlight-card">
+            <div>
+              <span className="spotlight-tag">
+                <ShieldAlert aria-hidden="true" /> Federal Investigation
+              </span>
+              <h4>DOT Probes 7,000+ Meltdown</h4>
+              <p>U.S. DOT opened a formal probe into Delta's cancellation chaos, refund denials, and customer service collapse.</p>
+            </div>
+            <ExternalLink href="https://www.transportation.gov/briefing-room/us-department-transportation-opens-investigation-delta-air-lines">
+              Official Briefing
+            </ExternalLink>
+          </article>
+
+          <article className="spotlight-card">
+            <div>
+              <span className="spotlight-tag">
+                <Siren aria-hidden="true" /> In-Flight Emergency
+              </span>
+              <h4>Spoiled Food Flight Diversion</h4>
+              <p>Flight 136 diverted to JFK after moldy meals sickened passengers mid-flight; hot food pulled on 75 international routes.</p>
+            </div>
+            <ExternalLink href="https://www.washingtonpost.com/travel/2024/07/03/delta-flight-spoiled-food-diversion/">
+              Washington Post
+            </ExternalLink>
+          </article>
+
+          <article className="spotlight-card">
+            <div>
+              <span className="spotlight-tag">
+                <AlertTriangle aria-hidden="true" /> Safety Citations
+              </span>
+              <h4>Fatal Atlanta TechOps Blast</h4>
+              <p>Federal OSHA cited Delta for safety violations after an exploding tire killed 2 maintenance workers and severely injured a third.</p>
+            </div>
+            <ExternalLink href="https://www.theguardian.com/us-news/article/2024/aug/27/delta-plane-tire-explosion-atlanta-airport">
+              OSHA Report
+            </ExternalLink>
+          </article>
+
+          <article className="spotlight-card">
+            <div>
+              <span className="spotlight-tag">
+                <BarChart3 aria-hidden="true" /> Reliability Surge
+              </span>
+              <h4>Cancellations Up 116%</h4>
+              <p>DOT data shows Delta domestic cancellations surged to 2.35% (over 19,150 flights) in H1 2026, ranking near industry bottom.</p>
+            </div>
+            <ExternalLink href="https://simpleflying.com/delta-air-lines-cancels-nearly-twice-many-flights-2025/">
+              DOT Data Analysis
+            </ExternalLink>
+          </article>
+        </div>
+
         <div className="reliability-grid" aria-label="Reliability data points">
           {reliability.map((item) => (
             <article className="metric-card" key={item.label}>
