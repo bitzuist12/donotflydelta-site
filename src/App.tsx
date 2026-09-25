@@ -6,7 +6,6 @@ import {
   Clock3,
   FileText,
   MessageCircle,
-  Newspaper,
   Plane,
   ShieldAlert,
   Siren,
@@ -52,84 +51,177 @@ const risks = [
   },
 ]
 
-const reports = [
+type ReportCategory = 'all' | 'legal' | 'safety' | 'operations' | 'passenger'
+
+interface ReportItem {
+  title: string
+  note: string
+  href: string
+  kind: string
+  category: 'legal' | 'safety' | 'operations' | 'passenger'
+}
+
+const reports: ReportItem[] = [
+  // Federal & Regulatory Investigations / Legal Actions
+  {
+    title: 'DOT formal investigation into Delta meltdown',
+    note: 'U.S. Department of Transportation launched a formal investigation into Delta after 7,000+ flight cancellations during the July outage, examining refund refusals, voucher denials, and customer support failures.',
+    href: 'https://www.transportation.gov/briefing-room/us-department-transportation-opens-investigation-delta-air-lines',
+    kind: 'Federal investigation',
+    category: 'legal',
+  },
+  {
+    title: 'OSHA citations for fatal Atlanta TechOps explosion',
+    note: 'Federal OSHA investigators cited Delta Air Lines for safety violations following the August 2024 tire explosion at Atlanta TechOps that killed two maintenance workers and severely injured a third.',
+    href: 'https://www.theguardian.com/us-news/article/2024/aug/27/delta-plane-tire-explosion-atlanta-airport',
+    kind: 'Federal citation',
+    category: 'legal',
+  },
+  {
+    title: 'EEOC pregnancy discrimination federal lawsuit',
+    note: 'The U.S. Equal Employment Opportunity Commission sued Delta Air Lines in federal court, alleging the carrier rescinded an employment offer upon discovering the applicant was pregnant.',
+    href: 'https://www.eeoc.gov/newsroom/eeoc-sues-delta-air-lines-pregnancy-discrimination',
+    kind: 'Federal lawsuit',
+    category: 'legal',
+  },
+  {
+    title: '$78.75 million jet fuel dumping class-action settlement',
+    note: 'Delta reached a proposed $78.75 million settlement after dumping tens of thousands of gallons of toxic aviation fuel directly over school playgrounds and residential neighborhoods in Los Angeles.',
+    href: 'https://www.latimes.com/california/story/2026-01-15/delta-fuel-dump-school-settlement',
+    kind: 'Court settlement',
+    category: 'legal',
+  },
+  {
+    title: 'Federal judge rejects Delta bid to toss passenger claims',
+    note: 'A federal judge permitted passenger breach-of-contract claims to proceed against Delta following the 2024 meltdown, while CrowdStrike noted Delta’s own outdated IT infrastructure drove its paralysis.',
+    href: 'https://www.courthousenews.com/delta-crowdstrike-flight-cancellations/',
+    kind: 'Federal court ruling',
+    category: 'legal',
+  },
+
+  // Safety & In-Flight Medical Emergencies
+  {
+    title: 'Spoiled food in-flight emergency diverts international flight',
+    note: 'Delta Flight 136 from Detroit to Amsterdam diverted to JFK after economy passengers were fed moldy, spoiled meals mid-flight; medics treated dozens upon landing, forcing Delta to pull hot meals on 75 international routes.',
+    href: 'https://www.washingtonpost.com/travel/2024/07/03/delta-flight-spoiled-food-diversion/',
+    kind: 'Food safety emergency',
+    category: 'safety',
+  },
+  {
+    title: 'Passengers hospitalized after toxic cabin fumes',
+    note: 'A September 2026 Delta flight from Maui to Seattle made an emergency diversion to Honolulu after passengers inhaled toxic fumes in the cabin, resulting in multiple hospital emergency room visits.',
+    href: 'https://www.aviation24.be/airlines/delta-air-lines/flight-diverts-to-honolulu-after-fumes-in-cabin-injure-passengers/',
+    kind: 'Emergency diversion',
+    category: 'safety',
+  },
+  {
+    title: 'Rapid cabin depressurization & bleeding ears',
+    note: 'Separate Delta flights experienced rapid loss of cabin pressure, ear bleeding, and oxygen mask deployments, including an emergency return to JFK.',
+    href: 'https://www.cbsnews.com/news/delta-flight-cabin-pressure-passengers-bleeding-ears/',
+    kind: 'Pressurization failure',
+    category: 'safety',
+  },
+  {
+    title: 'Passengers collapse in 111°F tarmac delay',
+    note: 'Passengers and crew passed out and were treated on stretchers after a Delta flight was trapped on the tarmac in 111-degree heat in Las Vegas for hours without functioning air conditioning.',
+    href: 'https://www.nbcnews.com/news/us-news/delta-passengers-treated-heat-injuries-plane-las-vegas-tarmac-delays-rcna94902',
+    kind: 'Tarmac confinement',
+    category: 'safety',
+  },
+  {
+    title: 'Boeing 767 engine fire forces emergency landing at LAX',
+    note: 'A Delta Boeing 767 suffered a right engine fire shortly after takeoff from Los Angeles International Airport, prompting an emergency air return and FAA investigation.',
+    href: 'https://www.cbsnews.com/losangeles/news/delta-flight-engine-fire-lax/',
+    kind: 'Engine fire emergency',
+    category: 'safety',
+  },
+  {
+    title: 'Passenger lawsuits over severe turbulence hospitalizations',
+    note: 'A Delta flight from Salt Lake City to Amsterdam encountered severe turbulence that hospitalized 25 people over Wyoming, leading to passenger lawsuits alleging airline negligence.',
+    href: 'https://apnews.com/article/delta-turbulence-amsterdam-injuries-lawsuit-e4b2d9e9',
+    kind: 'Negligence lawsuit',
+    category: 'safety',
+  },
+
+  // Operational Chaos & Cancellations
+  {
+    title: 'H1 2026 domestic cancellations nearly doubled',
+    note: 'DOT data shows Delta domestic cancellations climbed to 2.35% (over 19,150 flights), jumping 116% year-over-year as mainline operational reliability deteriorated.',
+    href: 'https://simpleflying.com/delta-air-lines-cancels-nearly-twice-many-flights-2025/',
+    kind: 'DOT data analysis',
+    category: 'operations',
+  },
+  {
+    title: 'May 2026 crew scheduling meltdown',
+    note: 'Delta canceled close to 400 flights across a single weekend, stranding thousands at Atlanta and LAX hubs due to internal crew scheduling bottlenecks.',
+    href: 'https://www.businessinsider.com/delta-canceling-flights-crew-scheduling-challenges-2026-5',
+    kind: 'Scheduling collapse',
+    category: 'operations',
+  },
+  {
+    title: 'July reliability collapse: 4,626 flights canceled',
+    note: 'View from the Wing reported Delta canceled 4,626 flights in July alone—nearly triple Southwest Airlines.',
+    href: 'https://viewfromthewing.com/new-data-shows-deltas-reliability-fell-apart-in-july-4626-flights-canceled-nearly-3x-southwest/',
+    kind: 'Operations data',
+    category: 'operations',
+  },
   {
     title: 'BTS on-time and cancellation data',
-    note: 'Official DOT/BTS data shows airline delay and cancellation rates through June 2026.',
+    note: 'Official DOT/BTS data tracks domestic delay and cancellation rates through 2026.',
     href: 'https://www.transtats.bts.gov/ontime/',
     kind: 'Official data',
+    category: 'operations',
   },
   {
     title: 'DOT customer-service commitments',
-    note: 'DOT says airlines must adhere to their controllable cancellation commitments.',
+    note: 'DOT requires airlines to adhere to published commitments for controllable cancellations and delays.',
     href: 'https://www.transportation.gov/airconsumer/airline-customer-service-dashboard',
     kind: 'Official policy',
+    category: 'operations',
   },
-  {
-    title: 'Delta 2026 cancellations reporting',
-    note: 'Simple Flying reported Delta cancellations nearly doubled in the first half of 2026, citing DOT data.',
-    href: 'https://simpleflying.com/delta-air-lines-cancels-nearly-twice-many-flights-2025/',
-    kind: 'Travel news',
-  },
-  {
-    title: 'Crew and scheduling disruption reporting',
-    note: 'Business Insider reported Delta cancellations tied to crew scheduling challenges in 2026.',
-    href: 'https://www.businessinsider.com/delta-canceling-flights-crew-scheduling-challenges-2026-5',
-    kind: 'News report',
-  },
+
+  // Public Passenger Reports & Fine-Print Traps
   {
     title: 'Next-day rebooking after cancellation',
-    note: 'Public Reddit discussion about a Delta cancellation and next-day rebooking.',
+    note: 'Public Reddit discussion about Delta canceling a flight within its operational control and rescheduling it a day later without protecting onward travel.',
     href: 'https://www.reddit.com/r/delta/comments/14axttt/delta_cancelled_my_flight_and_rescheduled_it_a/',
     kind: 'Public report',
-  },
-  {
-    title: 'What is a reasonable hotel cost?',
-    note: 'Passenger asks how Delta defines reasonable hotel reimbursement after a delay.',
-    href: 'https://www.reddit.com/r/delta/comments/1ea1gm9/delta_delay_hotel_reimbursement_what_is_a/',
-    kind: 'Public report',
-  },
-  {
-    title: 'Separate-ticket connection risk',
-    note: 'Public discussion of missed onward travel when tickets are separate.',
-    href: 'https://www.reddit.com/r/delta/comments/1qczsha/flight_got_delayed_over_4h_and_i_missed_my/',
-    kind: 'Public report',
-  },
-  {
-    title: 'Hotel voucher confusion',
-    note: 'Passenger report about being told to book a hotel and later facing reimbursement issues.',
-    href: 'https://www.reddit.com/r/delta/comments/1mfchvw/told_by_delta_to_book_hotel_due_to_cancelled/',
-    kind: 'Public report',
-  },
-  {
-    title: 'Facebook complaint community',
-    note: 'A public Facebook group exists specifically for Delta Air Lines customer complaints.',
-    href: 'https://www.facebook.com/groups/715221316650289/',
-    kind: 'Facebook',
-  },
-  {
-    title: 'X posts tracking Delta cancellations',
-    note: 'Public X posts circulated DOT-based claims about Delta cancellations in early 2026.',
-    href: 'https://x.com/AirlineHub1/status/2087648992125448559',
-    kind: 'X / Twitter',
+    category: 'passenger',
   },
   {
     title: 'Corporate rules vs human reality',
-    note: 'LinkedIn post describes a Delta disruption where the ticket was refunded and a voucher offered, while partner-airline disconnect impacts remained disputed.',
+    note: 'LinkedIn executive report describes a Delta disruption where the ticket was refunded and a voucher offered, while partner-airline disconnect impacts were denied.',
     href: 'https://www.linkedin.com/posts/horn-jason_when-corporate-rules-ignore-human-reality-activity-7495534260502618112-oTzX',
-    kind: 'LinkedIn',
+    kind: 'LinkedIn report',
+    category: 'passenger',
   },
   {
-    title: 'Eight hours onboard, then cancellation',
-    note: 'LinkedIn passenger report describes a long onboard delay, crew timeout, cancellation, and limited voucher support.',
+    title: 'Eight hours onboard before midnight cancellation',
+    note: 'Passenger report describes waiting 8 hours on a grounded aircraft with zero food before being canceled after crew timeouts, receiving inadequate assistance.',
     href: 'https://www.linkedin.com/posts/yuvalgolan1_8-hours-onboard-no-food-no-updates-activity-7406701841633247232-cjui',
-    kind: 'LinkedIn',
+    kind: 'LinkedIn report',
+    category: 'passenger',
   },
   {
-    title: 'Delta says vouchers can exist',
-    note: 'Delta CEO public post after the 2024 disruption referenced meal vouchers, hotel accommodations, and transportation where available.',
-    href: 'https://www.linkedin.com/posts/edbastian_like-many-companies-worldwide-delta-air-activity-7220856278506422272-Nc3m',
-    kind: 'Delta statement',
+    title: 'Hotel voucher confusion & reimbursement denials',
+    note: 'Passenger told at the gate to book their own hotel due to cancellation, and later denied reimbursement by customer care.',
+    href: 'https://www.reddit.com/r/delta/comments/1mfchvw/told_by_delta_to_book_hotel_due_to_cancelled/',
+    kind: 'Public report',
+    category: 'passenger',
+  },
+  {
+    title: 'Separate-ticket connection abandonment',
+    note: 'Public discussion of passengers missing separate international flights after domestic Delta delays and being told Delta has zero liability.',
+    href: 'https://www.reddit.com/r/delta/comments/1qczsha/flight_got_delayed_over_4h_and_i_missed_my/',
+    kind: 'Public report',
+    category: 'passenger',
+  },
+  {
+    title: 'Facebook customer complaint community',
+    note: 'Active public Facebook group tracking daily passenger grievances, baggage losses, and cancellation disputes.',
+    href: 'https://www.facebook.com/groups/715221316650289/',
+    kind: 'Facebook group',
+    category: 'passenger',
   },
 ]
 
@@ -191,8 +283,22 @@ function ExternalLink({ href, children }: { href: string; children: React.ReactN
   )
 }
 
+const categories: { key: ReportCategory; label: string }[] = [
+  { key: 'all', label: 'All Incidents & Reports' },
+  { key: 'legal', label: 'Federal & Legal Actions' },
+  { key: 'safety', label: 'Safety & Emergencies' },
+  { key: 'operations', label: 'Operational Meltdowns' },
+  { key: 'passenger', label: 'Passenger Field Reports' },
+]
+
 function App() {
   const [submitted, setSubmitted] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState<ReportCategory>('all')
+
+  const filteredReports =
+    selectedCategory === 'all'
+      ? reports
+      : reports.filter((r) => r.category === selectedCategory)
 
   function handleStorySubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -396,12 +502,35 @@ function App() {
             ))}
           </div>
         </div>
+        <div className="filter-bar" role="tablist" aria-label="Incident category filters">
+          {categories.map((cat) => {
+            const count =
+              cat.key === 'all'
+                ? reports.length
+                : reports.filter((r) => r.category === cat.key).length
+            return (
+              <button
+                key={cat.key}
+                type="button"
+                className={selectedCategory === cat.key ? 'filter-btn active' : 'filter-btn'}
+                onClick={() => setSelectedCategory(cat.key)}
+              >
+                <span>{cat.label}</span>
+                <span className="count-badge">{count}</span>
+              </button>
+            )
+          })}
+        </div>
+
         <div className="report-list">
-          {reports.map((report) => (
+          {filteredReports.map((report) => (
             <article className="report-card" key={report.href}>
               <div>
                 <span className="report-kind">
-                  <Newspaper aria-hidden="true" />
+                  {report.category === 'legal' && <ShieldAlert aria-hidden="true" />}
+                  {report.category === 'safety' && <Siren aria-hidden="true" />}
+                  {report.category === 'operations' && <Plane aria-hidden="true" />}
+                  {report.category === 'passenger' && <MessageCircle aria-hidden="true" />}
                   {report.kind}
                 </span>
                 <h3>{report.title}</h3>

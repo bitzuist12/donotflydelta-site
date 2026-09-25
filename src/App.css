@@ -327,6 +327,55 @@ h3 {
   color: #292524;
 }
 
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid #d2c8b4;
+  background: rgba(255, 255, 255, 0.72);
+  color: #57534e;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-btn:hover {
+  background: #fbf7ef;
+  border-color: #b91c1c;
+  color: #b91c1c;
+}
+
+.filter-btn.active {
+  background: #171717;
+  color: white;
+  border-color: #171717;
+}
+
+.filter-btn .count-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.filter-btn.active .count-badge {
+  background: rgba(255, 255, 255, 0.22);
+  color: white;
+}
+
 .report-list {
   display: grid;
   gap: 14px;
